@@ -7,27 +7,24 @@ const Users = (props) => {
   let users = localState.users;
   let clickCount = localState.clickCount;
   let value = props.localState.inputValue;
-  console.log("Users,jsx users ===", users);
 
   let newArray;
   const sortArray = (array, field) => {
     if (clickCount) {
       clickCount = false;
       props.changeCkickCount(clickCount);
-      console.log("там где фолс");
       newArray = array.slice().sort(function (a, b) {
         if (a[field] > b[field]) return -1;
-        if (a[field] === b[field]) return 0;
         if (a[field] < b[field]) return 1;
+        return 0;
       });
     } else {
       clickCount = true;
       props.changeCkickCount(clickCount);
-      console.log("там где тру");
       newArray = array.slice().sort(function (a, b) {
         if (a[field] > b[field]) return 1;
-        if (a[field] === b[field]) return 0;
         if (a[field] < b[field]) return -1;
+        return 0;
       });
     }
     return newArray;
@@ -42,7 +39,7 @@ const Users = (props) => {
         item.phone.trim().includes(value.trim())
       );
     })
-    .map((user, index) => (
+    .map((user) => (
       <User
         email={user.email}
         phone={user.phone}
@@ -51,13 +48,12 @@ const Users = (props) => {
         address={user.address}
         description={user.description}
         id={user.id}
-        index={index}
         users={users}
         user={user}
         renderArr={props.renderArr}
         modalWindowStateChange={props.modalWindowStateChange}
-        localState={localState}
         modalWindowState={user.modalWindowState}
+        key={user.id}
       />
     ));
 

@@ -6,7 +6,6 @@ class UsersContainer extends React.Component {
     users: [],
     clickCount: true,
     inputValue: "",
-    // modalWindowState: false,
   };
   componentDidMount() {
     fetch(
@@ -36,14 +35,17 @@ class UsersContainer extends React.Component {
   changeCkickCount = (param) => {
     this.setState({ clickCount: param });
   };
-  modalWindowStateChange = (array, value, field) => {
-    let newArray = (array.slice()[field].modalWindowState = value);
+  modalWindowStateChange = (array, value, id) => {
+    let copyUsers = array.slice();
+    let findUser = copyUsers.find((item) => item.id === id);
+    if (findUser !== undefined) {
+      findUser.modalWindowState = value;
+    }
     this.setState({
-      user: newArray,
+      users: copyUsers,
     });
   };
   render() {
-    console.log(this.state);
     return (
       <Users
         localState={this.state}
