@@ -9,7 +9,7 @@ class UsersContainer extends React.Component {
   };
   componentDidMount() {
     fetch(
-      "http://www.filltext.com/?rows=50&firstName={firstName}&id={index}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}"
+      "https://cors-anywhere.herokuapp.com///www.filltext.com/?rows=50&firstName={firstName}&id={index}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}"
     )
       .then((res) => res.json())
       .then((data) =>
